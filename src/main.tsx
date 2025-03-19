@@ -3,12 +3,14 @@ import { createRoot } from 'react-dom/client'
 import { SimplestForm } from "./slides/simplest-form.tsx";
 import { FieldValidation } from "./slides/field-validation.tsx";
 import { SubmitValidation } from "./slides/submit-validation.tsx";
+import { BoilerplateReduction } from "./slides/boilerplate-reduction.tsx";
 import './index.css'
 
 const slides: (() => ReactNode)[] = [
     SimplestForm,
     FieldValidation,
     SubmitValidation,
+    BoilerplateReduction
 ];
 
 const CurrentSlide = slides[0];
