@@ -1,6 +1,6 @@
 import { useForm } from "@tanstack/react-form"
 
-export function FieldValidation() {
+export function SubmitValidation() {
     const form = useForm({
         defaultValues: {
             age: 0,
@@ -8,6 +8,20 @@ export function FieldValidation() {
         onSubmit: ({ value }) => {
             alert(JSON.stringify(value, null, 2))
         },
+        validators: {
+            onSubmit: ({ value }) => {
+                if (value.age <= 13) {
+                    return "Must be 13 or older";
+                    // return {
+                    //     fields: {
+                    //         age: 'Must be 13 or older',
+                    //     },
+                    // }
+                }
+
+                return null;
+            },
+        }
     });
 
     return (
@@ -20,17 +34,6 @@ export function FieldValidation() {
         >
             <form.Field
                 name="age"
-                validators={{
-                    onChange: ({ value }) =>
-                        value > 13 ? undefined : 'Must be 13 or older',
-                    // onBlur: ({ value }) =>
-                    //     value > 13 ? undefined : 'Must be 13 or older',
-                    // onSubmit:
-                    //     ({ value }) =>
-                    //         value > 13 ? undefined : 'Must be 13 or older',
-                    // onMount: ({ value }) =>
-                    //     value > 13 ? undefined : 'Must be 13 or older',
-                }}
                 children={(field) => (
                     <>
                         <label htmlFor={field.name}>Age</label>
@@ -43,12 +46,16 @@ export function FieldValidation() {
                             onChange={(e) => field.handleChange(e.target.valueAsNumber)}
                         />
                         {field.state.meta.errors.length ? (
-                            <em>{field.state.meta.errors.join(', ')}</em>
+                            <em>Field validation: {field.state.meta.errors.join(', ')}</em>
                         ) : null}
                     </>
                 )}
             />
             <input type="submit"/>
+            <form.Subscribe
+                selector={(state) => [state.errorMap]}
+                children={([errorMap]) => errorMap.onSubmit ? `Form validation: ${errorMap.onSubmit}` : null}
+            />
         </form>
     )
 }
