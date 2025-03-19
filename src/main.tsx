@@ -4,13 +4,15 @@ import { SimplestForm } from "./slides/simplest-form.tsx";
 import { FieldValidation } from "./slides/field-validation.tsx";
 import { SubmitValidation } from "./slides/submit-validation.tsx";
 import { BoilerplateReduction } from "./slides/boilerplate-reduction.tsx";
+import { Arrays } from "./slides/arrays.tsx";
 import './index.css'
 
 const slides: (() => ReactNode)[] = [
     SimplestForm,
     FieldValidation,
     SubmitValidation,
-    BoilerplateReduction
+    BoilerplateReduction,
+    Arrays
 ];
 
 const CurrentSlide = slides[0];
