@@ -5,6 +5,7 @@ import { FieldValidation } from "./slides/field-validation.tsx";
 import { SubmitValidation } from "./slides/submit-validation.tsx";
 import { BoilerplateReduction } from "./slides/boilerplate-reduction.tsx";
 import { Arrays } from "./slides/arrays.tsx";
+import { LinkedFields } from "./slides/linked-fields.tsx";
 import './index.css'
 
 const slides: (() => ReactNode)[] = [
@@ -12,7 +13,8 @@ const slides: (() => ReactNode)[] = [
     FieldValidation,
     SubmitValidation,
     BoilerplateReduction,
-    Arrays
+    Arrays,
+    LinkedFields
 ];
 
 const CurrentSlide = slides[0];
